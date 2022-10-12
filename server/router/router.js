@@ -12,6 +12,6 @@ router.delete('/exhibitions/:id', exhibitionController.deleteExhibition);
 
 router.get('/artworks', artworkController.getArtworks);
 router.post('/artworks', artworkController.postArtwork);
-router.delete('/artworks', artworkController.deleteArtwork);
+router.delete('/artworks/:id', artworkController.deleteArtwork);
 
 module.exports = router;
