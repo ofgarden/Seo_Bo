@@ -63,6 +63,9 @@ a {
   text-decoration:none;
   color:inherit;
 }
+html {
+  scroll-snap-type: y mandatory;
+}
 `;
 
 function App() {

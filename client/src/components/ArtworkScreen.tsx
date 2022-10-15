@@ -16,12 +16,15 @@ export default function ArtworkScreen({ category }: ICategory) {
 
   return (
     <Container>
-      <button onClick={() => handleClick(category as any)}>
-        To gallery component
-      </button>
       {category === 'late' && <Description>{lateDescription}</Description>}
       {category === 'mid' && <Description>{midDescription}</Description>}
       {category === 'early' && <Description>{earlyDescription}</Description>}
+      <button
+        style={{ position: 'absolute' }}
+        onClick={() => handleClick(category as any)}
+      >
+        To gallery component
+      </button>
     </Container>
   );
 }
@@ -29,10 +32,14 @@ export default function ArtworkScreen({ category }: ICategory) {
 const Container = styled.div`
   border: 1px solid skyblue;
   height: 100vh;
+  width: 100vw;
+  position: relative;
+  scroll-snap-align: start;
 `;
 
 const Description = styled.div`
   border: 1px solid blue;
   /* height: 100px; */
   width: 500px;
+  position: absolute;
 `;
