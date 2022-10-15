@@ -11,23 +11,38 @@ interface ArtworkProps {
 const ArtworkImg = styled.img`
   height: 300px;
   width: 400px;
-  object-fit: contain;
+  object-fit: cover;
+  border: 1px solid blue;
 `;
+
+const ArtworkLabel = styled.div`
+  width: 400px;
+  height: 100px;
+  border: 1px solid red;
+`;
+
+const LabelText = styled.div``;
 
 export default function Artwork({ title, medium, imageUrl }: ArtworkProps) {
   return (
-    <>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          border: '1px solid black',
-        }}
-      >
-        <ArtworkImg src={imageUrl}></ArtworkImg>
-        <span>{title}</span>
-        <div>{medium}</div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        border: '1px solid green',
+      }}
+    >
+      <button style={{ height: '30px' }}>PREV</button>
+      <div>
+        <ArtworkImg src={imageUrl} />
+        <ArtworkLabel>
+          <span>{title}</span>
+          <div>{medium}</div>
+        </ArtworkLabel>
       </div>
-    </>
+      <button style={{ height: '30px' }}>NEXT</button>
+    </div>
   );
 }
