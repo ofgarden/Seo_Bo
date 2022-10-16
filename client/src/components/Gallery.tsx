@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faChevronLeft,
+  faChevronRight,
+  faHouseChimney,
+} from '@fortawesome/free-solid-svg-icons';
 import { fetchArtworks } from '../ArtworkService';
 import { ICategory } from '../atoms';
 import Artwork from './Artwork';
-import { motion, AnimatePresence } from 'framer-motion';
-import styled from 'styled-components';
 
 interface IArtworks {
   category: string;
@@ -13,6 +20,70 @@ interface IArtworks {
   year: number;
   imageUrl: string;
   _id: string;
+}
+
+export default function Gallery({ category }: ICategory) {
+  const [artworksList, setArtworksList] = useState<IArtworks[]>([]);
+  const [visible, setVisible] = useState(0);
+  const [back, setBack] = useState(false);
+
+  useEffect(() => {
+    fetchArtworks().then((artworkslist) =>
+      setArtworksList(
+        artworkslist.filter(
+          (artworks: IArtworks) => artworks.category === category
+        )
+      )
+    );
+  }, [category]);
+
+  let navigate = useNavigate();
+  const handleHome = () => {
+    navigate(-1);
+  };
+
+  const handlePrev = () => {
+    setBack(true);
+    setVisible((prev) => (prev === 0 ? artworksList.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setBack(false);
+    setVisible((prev) => (prev === artworksList.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <Container>
+      <FontAwesomeHomeButton icon={faHouseChimney} onClick={handleHome} />
+      <FontAwesomePrevNextButton icon={faChevronLeft} onClick={handlePrev} />
+      <MotionContainer>
+        <AnimatePresence custom={back}>
+          {artworksList.map(
+            (artwork, i) =>
+              i === visible && (
+                <MotionArtwork
+                  key={i}
+                  custom={back}
+                  variants={motionArtwork}
+                  initial="entry"
+                  animate="show"
+                  exit="exit"
+                >
+                  <Artwork
+                    title={artwork.title}
+                    medium={artwork.medium.toLowerCase()}
+                    size={artwork.size}
+                    year={artwork.year}
+                    imageUrl={artwork.imageUrl}
+                  />
+                </MotionArtwork>
+              )
+          )}
+        </AnimatePresence>
+      </MotionContainer>
+      <FontAwesomePrevNextButton icon={faChevronRight} onClick={handleNext} />
+    </Container>
+  );
 }
 
 const Container = styled.div`
@@ -26,26 +97,25 @@ const MotionContainer = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
-  border: 1px solid red;
 `;
 
-const HomeButton = styled.button`
-  position: relative;
-  top: 20px;
+const FontAwesomePrevNextButton = styled(FontAwesomeIcon)`
+  cursor: pointer;
+  align-self: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  width: 150px;
+  color: lightgrey;
+  font-size: 40px;
+`;
+
+const FontAwesomeHomeButton = styled(FontAwesomeIcon)`
+  cursor: pointer;
   height: 20px;
-`;
-
-const PrevButton = styled.button`
-  width: 100px;
-  position: relative;
+  top: 20px;
   left: 50px;
-`;
-
-const NextButton = styled.button`
-  width: 100px;
-  position: relative;
-  right: 50px;
+  position: absolute;
+  color: lightgrey;
 `;
 
 const MotionArtwork = styled(motion.div)`
@@ -76,66 +146,3 @@ const motionArtwork = {
     },
   }),
 };
-
-export default function Gallery({ category }: ICategory) {
-  const [artworksList, setArtworksList] = useState<IArtworks[]>([]);
-  const [visible, setVisible] = useState(0);
-  const [back, setBack] = useState(false);
-
-  useEffect(() => {
-    fetchArtworks().then((artworkslist) =>
-      setArtworksList(
-        artworkslist.filter(
-          (artworks: IArtworks) => artworks.category === category
-        )
-      )
-    );
-  }, [category]);
-
-  // console.log(artworksList.length); PRINTS 4
-  // 전체 작품을 가져온 다음에 필터를 하는 거기 때문에.... 아
-  // recoil 로 data 관리...?
-
-  const handleNext = () => {
-    setBack(false);
-    setVisible((prev) => (prev === artworksList.length - 1 ? 0 : prev + 1));
-  };
-
-  const handlePrev = () => {
-    setBack(true);
-    setVisible((prev) => (prev === 0 ? 0 : prev - 1));
-  };
-
-  return (
-    <Container>
-      <PrevButton onClick={handlePrev}>prev</PrevButton>
-      <MotionContainer>
-        <HomeButton>HOME</HomeButton>
-        <AnimatePresence custom={back}>
-          {artworksList.map(
-            (artwork, i) =>
-              i === visible && (
-                <MotionArtwork
-                  key={i}
-                  custom={back}
-                  variants={motionArtwork}
-                  initial="entry"
-                  animate="show"
-                  exit="exit"
-                >
-                  <Artwork
-                    title={artwork.title}
-                    medium={artwork.medium.toLowerCase()}
-                    size={artwork.size}
-                    year={artwork.year}
-                    imageUrl={artwork.imageUrl}
-                  />
-                </MotionArtwork>
-              )
-          )}
-        </AnimatePresence>
-      </MotionContainer>
-      <NextButton onClick={handleNext}>next</NextButton>
-    </Container>
-  );
-}

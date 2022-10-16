@@ -14,8 +14,6 @@ const Container = styled.div`
 export default function MainScreen() {
   return (
     <Container>
-      Screen1: MAIN DRAWING
-      <div>TODO: 부드럽게 넘어가기 </div>
       <div>TODO: 상태창 </div>
       <div>TODO: 타임라인? </div>
     </Container>
