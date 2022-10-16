@@ -8,42 +8,41 @@ interface ArtworkProps {
   imageUrl: string;
 }
 
-// responsive
 const ArtworkImg = styled.img`
-  width: 700px;
-  object-fit: contain;
-  /* border-radius: 15px; */
+  height: 300px;
+  width: 400px;
+  object-fit: cover;
+  border: 1px solid blue;
 `;
 
 const ArtworkLabel = styled.div`
+  width: 400px;
   height: 100px;
-  width: 700px;
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
-  border-radius: 15px;
+  border: 1px solid red;
 `;
 
-export default function Artwork({
-  title,
-  medium,
-  imageUrl,
-  size,
-  year,
-}: ArtworkProps) {
+const LabelText = styled.div``;
+
+export default function Artwork({ title, medium, imageUrl }: ArtworkProps) {
   return (
-    <>
-      <ArtworkImg src={imageUrl} />
-      <ArtworkLabel>
-        <div style={{ fontWeight: 'bold', fontSize: '20px' }}>{title}</div>
-        <div style={{ fontSize: '15px', marginTop: '7px' }}>
-          {medium}, {size.height} x {size.width} cm, {year}
-        </div>
-      </ArtworkLabel>
-    </>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        border: '1px solid green',
+      }}
+    >
+      <button style={{ height: '30px' }}>PREV</button>
+      <div>
+        <ArtworkImg src={imageUrl} />
+        <ArtworkLabel>
+          <span>{title}</span>
+          <div>{medium}</div>
+        </ArtworkLabel>
+      </div>
+      <button style={{ height: '30px' }}>NEXT</button>
+    </div>
   );
 }
