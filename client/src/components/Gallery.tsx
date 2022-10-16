@@ -30,10 +30,22 @@ const MotionContainer = styled.div`
   border: 1px solid red;
 `;
 
-const BackButton = styled.button`
+const HomeButton = styled.button`
   position: relative;
   top: 20px;
   height: 20px;
+`;
+
+const PrevButton = styled.button`
+  width: 100px;
+  position: relative;
+  left: 50px;
+`;
+
+const NextButton = styled.button`
+  width: 100px;
+  position: relative;
+  right: 50px;
 `;
 
 const MotionArtwork = styled(motion.div)`
@@ -71,17 +83,22 @@ export default function Gallery({ category }: ICategory) {
   const [back, setBack] = useState(false);
 
   useEffect(() => {
-    fetchArtworks().then((artworkslist) => setArtworksList(artworkslist));
-    // console.log(artworksList.length); PRINTS 4
-    // 전체 작품을 가져온 다음에 필터를 하는 거기 때문에.... 아
-    // recoil 로 data 관리...?
-  }, []);
+    fetchArtworks().then((artworkslist) =>
+      setArtworksList(
+        artworkslist.filter(
+          (artworks: IArtworks) => artworks.category === category
+        )
+      )
+    );
+  }, [category]);
+
+  // console.log(artworksList.length); PRINTS 4
+  // 전체 작품을 가져온 다음에 필터를 하는 거기 때문에.... 아
+  // recoil 로 data 관리...?
 
   const handleNext = () => {
     setBack(false);
-    setVisible((prev) =>
-      prev === artworksList.length ? artworksList.length : prev + 1
-    );
+    setVisible((prev) => (prev === artworksList.length - 1 ? 0 : prev + 1));
   };
 
   const handlePrev = () => {
@@ -89,52 +106,36 @@ export default function Gallery({ category }: ICategory) {
     setVisible((prev) => (prev === 0 ? 0 : prev - 1));
   };
 
-  // artworkList 을 recoil에서 관리하고
-  // 각 상황에 맞게 map 해서 가공된 데이터를 만든 뒤
-  // 그걸 여기에 가져와서 category props랑 비교하면 되지 않을끼?
-
   return (
     <Container>
-      <button
-        style={{ position: 'relative', left: '50px' }}
-        onClick={handlePrev}
-      >
-        prev
-      </button>
+      <PrevButton onClick={handlePrev}>prev</PrevButton>
       <MotionContainer>
-        <BackButton>HOME</BackButton>
+        <HomeButton>HOME</HomeButton>
         <AnimatePresence custom={back}>
-          {artworksList
-            .filter((artworks) => artworks.category === category)
-            .map(
-              (artwork, i) =>
-                i === visible && (
-                  <MotionArtwork
-                    key={i}
-                    custom={back}
-                    variants={motionArtwork}
-                    initial="entry"
-                    animate="show"
-                    exit="exit"
-                  >
-                    <Artwork
-                      title={artwork.title}
-                      medium={artwork.medium.toLowerCase()}
-                      size={artwork.size}
-                      year={artwork.year}
-                      imageUrl={artwork.imageUrl}
-                    />
-                  </MotionArtwork>
-                )
-            )}
+          {artworksList.map(
+            (artwork, i) =>
+              i === visible && (
+                <MotionArtwork
+                  key={i}
+                  custom={back}
+                  variants={motionArtwork}
+                  initial="entry"
+                  animate="show"
+                  exit="exit"
+                >
+                  <Artwork
+                    title={artwork.title}
+                    medium={artwork.medium.toLowerCase()}
+                    size={artwork.size}
+                    year={artwork.year}
+                    imageUrl={artwork.imageUrl}
+                  />
+                </MotionArtwork>
+              )
+          )}
         </AnimatePresence>
       </MotionContainer>
-      <button
-        style={{ position: 'relative', right: '50px' }}
-        onClick={handleNext}
-      >
-        next
-      </button>
+      <NextButton onClick={handleNext}>next</NextButton>
     </Container>
   );
 }
