@@ -32,7 +32,7 @@ export default function ArtworkScreen({ category }: ICategory) {
 const Container = styled.div`
   border: 1px solid skyblue;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   position: relative;
   scroll-snap-align: start;
 `;
