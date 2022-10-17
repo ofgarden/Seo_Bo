@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import Router from './Router';
 
 const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,900&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -65,6 +66,12 @@ a {
 }
 html {
   scroll-snap-type: y mandatory;
+}
+*{
+    -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+    display: none;
 }
 `;
 
