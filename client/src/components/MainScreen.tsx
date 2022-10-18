@@ -40,12 +40,12 @@ const TitleItalic = styled.div`
 export default function MainScreen() {
   return (
     <Container>
-      <TransparentCover />
-      <BackgroudGif src={startGif}></BackgroudGif>
       <TextWapper>
         <Artist>Park Seo-Bo</Artist>
         <TitleItalic>Écriture</TitleItalic>
       </TextWapper>
+      <TransparentCover />
+      <BackgroudGif src={startGif}></BackgroudGif>
     </Container>
   );
 }
