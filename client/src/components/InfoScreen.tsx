@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import endGif from '../assets/end.gif';
 
 const Container = styled.div`
@@ -9,9 +10,15 @@ const Container = styled.div`
 `;
 
 export default function InfoScreen() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/exhibitions');
+  };
+
   return (
     <Container>
-      <button>To Exhibition</button>
+      <button onClick={handleClick}>To Exhibition</button>
     </Container>
   );
 }
