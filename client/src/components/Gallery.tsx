@@ -8,7 +8,7 @@ import {
   faChevronRight,
   faHouseChimney,
 } from '@fortawesome/free-solid-svg-icons';
-import { fetchArtworks } from '../ArtworkService';
+import { fetchArtworks } from '../ApiService';
 import { ICategory } from '../atoms';
 import Artwork from './Artwork';
 
