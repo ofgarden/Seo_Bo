@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import startGif from '../assets/start.gif';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAnglesDown } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
   display: flex;
@@ -45,6 +47,14 @@ export default function MainScreen() {
         <TitleItalic>Écriture</TitleItalic>
       </TextWapper>
       <TransparentCover />
+      <FontAwesomeIcon
+        style={{
+          width: '100%',
+          height: '40px',
+          position: 'absolute',
+        }}
+        icon={faAnglesDown}
+      ></FontAwesomeIcon>
       <BackgroudGif src={startGif}></BackgroudGif>
     </Container>
   );
