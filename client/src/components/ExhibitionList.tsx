@@ -35,6 +35,7 @@ const MapGrid = styled.div`
   display: grid;
   grid-column: 2;
   place-items: center;
+  /* height: 400px; */
 `;
 
 const Title = styled.div`
@@ -57,6 +58,8 @@ export default function ExhibitionList() {
     iconSize: [15, 15],
   });
 
+  // console.log(new Date(exhibitionsList[1].enddate));
+
   return (
     <div style={{ padding: '50px', fontFamily: 'poppins' }}>
       {/* TODO: STYLED COMPNENT => TITLE */}
@@ -64,9 +67,12 @@ export default function ExhibitionList() {
 
       <Wrapper>
         <ExhibitionGrid>
-          {exhibitionsList.map((el) => (
-            <Exhibition key={el._id} {...el} />
-          ))}
+          {exhibitionsList
+            .filter((el) => new Date(el.enddate) >= new Date())
+            // .sort((a, b) => new Date(a.enddate) - new Date(b.enddate))
+            .map((el) => (
+              <Exhibition key={el._id} {...el} />
+            ))}
         </ExhibitionGrid>
 
         <MapGrid>
