@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import Exhibitions from './components/Exhibitions';
+import ExhibitionList from './components/ExhibitionList';
 import Gallery from './components/Gallery';
 import Home from './components/Home';
 
@@ -13,7 +13,7 @@ function Router() {
       <Route path="/late" element={<Gallery category={'late'} />}></Route>
       <Route path="/mid" element={<Gallery category={'mid'} />}></Route>
       <Route path="/early" element={<Gallery category={'early'} />}></Route>
-      <Route path="/exhibitions" element={<Exhibitions />}></Route>
+      <Route path="/exhibitions" element={<ExhibitionList />}></Route>
     </Routes>
   );
 }
