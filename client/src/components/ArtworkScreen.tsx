@@ -4,12 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 import { ICategory } from '../atoms';
-import {
-  lateDescription,
-  midDescription,
-  earlyDescription,
-} from '../assets/description';
-import lateBackground from '../assets/lateBackground.jpeg';
+import { midDescription, earlyDescription } from '../assets/description';
 import LateArtworks from './LateArtworks';
 
 const ToGalleryWrapper = styled(motion.div)`
@@ -81,7 +76,6 @@ export default function ArtworkScreen({ category }: ICategory) {
 }
 
 const Container = styled.div`
-  border: 1px solid skyblue;
   height: 100vh;
   width: 100%;
   position: relative;

@@ -11,6 +11,7 @@ interface ArtworkProps {
 // responsive
 const ArtworkImg = styled.img`
   width: 700px;
+  max-height: 550px;
   object-fit: contain;
   /* border-radius: 15px; */
 `;
