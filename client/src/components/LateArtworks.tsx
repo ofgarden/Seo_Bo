@@ -22,7 +22,6 @@ const TransparentCover = styled.div`
 `;
 
 const BackgroudImg = styled.img`
-  padding-top: 50px;
   align-self: center;
   justify-self: center;
   grid-column: 2;
@@ -30,6 +29,7 @@ const BackgroudImg = styled.img`
 `;
 
 const Title = styled.span`
+  padding-top: 20px;
   grid-column: 3;
   align-self: center;
   font-size: 90px;
