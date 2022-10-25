@@ -8,12 +8,10 @@ interface ArtworkProps {
   imageUrl: string;
 }
 
-// responsive
 const ArtworkImg = styled.img`
-  width: 700px;
   max-height: 550px;
+  width: 700px;
   object-fit: contain;
-  /* border-radius: 15px; */
 `;
 
 const ArtworkLabel = styled.div`
@@ -29,6 +27,16 @@ const ArtworkLabel = styled.div`
   border-radius: 15px;
 `;
 
+const Title = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+const Details = styled.div`
+  margin-top: 7px;
+  font-size: 15px;
+`;
+
 export default function Artwork({
   title,
   medium,
@@ -40,10 +48,10 @@ export default function Artwork({
     <>
       <ArtworkImg src={imageUrl} />
       <ArtworkLabel>
-        <div style={{ fontWeight: 'bold', fontSize: '20px' }}>{title}</div>
-        <div style={{ fontSize: '15px', marginTop: '7px' }}>
+        <Title>{title}</Title>
+        <Details>
           {medium}, {size.height} x {size.width} cm, {year}
-        </div>
+        </Details>
       </ArtworkLabel>
     </>
   );
