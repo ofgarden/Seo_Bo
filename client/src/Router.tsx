@@ -5,9 +5,6 @@ import Home from './components/Home';
 
 function Router() {
   return (
-    // TODO: BIOGRAPHY
-    // TODO: EXHIBITON -> MAP!
-
     <Routes>
       <Route path="/" element={<Home />}></Route>
       <Route path="/late" element={<Gallery category={'late'} />}></Route>
