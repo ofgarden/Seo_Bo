@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouseChimney } from '@fortawesome/free-solid-svg-icons';
 import markerIconPng from '../assets/Freepik-maps-and-flags.png';
 import { fetchExhibitions } from '../ApiService';
 import Exhibition from './Exhibition';
@@ -18,13 +21,37 @@ interface IExhibitions {
 }
 
 const containerStyle = {
-  width: '600px',
-  height: '400px',
+  width: '500px',
+  height: '500px',
 };
+
+const Container = styled.div`
+  padding: 50px;
+  font-family: poppins;
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const Title = styled.div`
+  margin-bottom: 50px;
+  font-size: 40px;
+  font-weight: 500;
+`;
+
+const FontAwesomeHomeButton = styled(FontAwesomeIcon)`
+  cursor: pointer;
+  color: lightgrey;
+  align-self: center;
+  margin-right: 50px;
+`;
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 45% 10% 45%;
 `;
 
 const ExhibitionGrid = styled.div`
@@ -33,15 +60,8 @@ const ExhibitionGrid = styled.div`
 
 const MapGrid = styled.div`
   display: grid;
-  grid-column: 2;
+  grid-column: 3;
   place-items: center;
-  /* height: 400px; */
-`;
-
-const Title = styled.div`
-  margin-bottom: 50px;
-  font-size: 40px;
-  font-weight: 500;
 `;
 
 export default function ExhibitionList() {
@@ -58,18 +78,25 @@ export default function ExhibitionList() {
     iconSize: [15, 15],
   });
 
-  // console.log(new Date(exhibitionsList[1].enddate));
+  let navigate = useNavigate();
+  const handleHome = () => {
+    navigate(-1);
+  };
 
   return (
-    <div style={{ padding: '50px', fontFamily: 'poppins' }}>
-      {/* TODO: STYLED COMPNENT => TITLE */}
-      <Title>CURRENT EXHIBITIONS</Title>
-
+    <Container>
+      <TitleWrapper>
+        <Title>CURRENT EXHIBITIONS</Title>
+        <FontAwesomeHomeButton icon={faHouseChimney} onClick={handleHome} />
+      </TitleWrapper>
       <Wrapper>
         <ExhibitionGrid>
           {exhibitionsList
             .filter((el) => new Date(el.enddate) >= new Date())
-            // .sort((a, b) => new Date(a.enddate) - new Date(b.enddate))
+            .sort(
+              (a, b) =>
+                new Date(a.enddate).getTime() - new Date(b.enddate).getTime()
+            )
             .map((el) => (
               <Exhibition key={el._id} {...el} />
             ))}
@@ -100,6 +127,6 @@ export default function ExhibitionList() {
           </MapContainer>
         </MapGrid>
       </Wrapper>
-    </div>
+    </Container>
   );
 }
