@@ -8,6 +8,13 @@ const Container = styled.div`
   position: absolute;
 `;
 
+const Warpper = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1% 55% 41% 3%;
+  grid-template-rows: 25% 25% 25% 25%;
+`;
+
 const TransparentCover = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -15,11 +22,15 @@ const TransparentCover = styled.div`
   position: absolute;
 `;
 
-const Warpper = styled.div`
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 1% 55% 41% 3%;
-  grid-template-rows: 25% 25% 25% 25%;
+const BackgroudImg = styled.img`
+  grid-column: 2;
+  grid-row: 1 / 5;
+  align-self: center;
+  justify-self: center;
+  max-height: 80%;
+  @media (max-width: 820px) {
+    max-width: 90%;
+  }
 `;
 
 const Title = styled.span`
@@ -46,17 +57,6 @@ const Description = styled.div`
   border-radius: 20px;
   @media (max-width: 1440px) {
     font-size: 12px;
-  }
-`;
-
-const BackgroudImg = styled.img`
-  grid-column: 2;
-  grid-row: 1 / 5;
-  align-self: center;
-  justify-self: center;
-  max-height: 80%;
-  @media (max-width: 820px) {
-    max-width: 90%;
   }
 `;
 
