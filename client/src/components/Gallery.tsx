@@ -22,6 +22,67 @@ interface IArtworks {
   _id: string;
 }
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  background-color: whitesmoke;
+`;
+
+const FontAwesomeHomeButton = styled(FontAwesomeIcon)`
+  cursor: pointer;
+  height: 20px;
+  top: 20px;
+  left: 50px;
+  position: absolute;
+  color: lightgrey;
+`;
+
+const FontAwesomePrevNextButton = styled(FontAwesomeIcon)`
+  cursor: pointer;
+  align-self: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  width: 150px;
+  color: lightgrey;
+  font-size: 40px;
+`;
+
+const MotionContainer = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+`;
+
+const MotionArtwork = styled(motion.div)`
+  position: absolute;
+  align-self: center;
+`;
+
+const motionArtwork = {
+  entry: (back: boolean) => ({
+    x: back ? -600 : 600,
+    opacity: 0,
+    scale: 0,
+  }),
+  show: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+    },
+  },
+  exit: (back: boolean) => ({
+    x: back ? 600 : -600,
+    opacity: 0,
+    scale: 0,
+    transition: {
+      duration: 0.8,
+    },
+  }),
+};
+
 export default function Gallery({ category }: ICategory) {
   const [artworksList, setArtworksList] = useState<IArtworks[]>([]);
   const [visible, setVisible] = useState(0);
@@ -85,64 +146,3 @@ export default function Gallery({ category }: ICategory) {
     </Container>
   );
 }
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  background-color: whitesmoke;
-`;
-
-const MotionContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-`;
-
-const FontAwesomePrevNextButton = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  align-self: center;
-  padding-top: 100px;
-  padding-bottom: 100px;
-  width: 150px;
-  color: lightgrey;
-  font-size: 40px;
-`;
-
-const FontAwesomeHomeButton = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  height: 20px;
-  top: 20px;
-  left: 50px;
-  position: absolute;
-  color: lightgrey;
-`;
-
-const MotionArtwork = styled(motion.div)`
-  position: absolute;
-  align-self: center;
-`;
-
-const motionArtwork = {
-  entry: (back: boolean) => ({
-    x: back ? -600 : 600,
-    opacity: 0,
-    scale: 0,
-  }),
-  show: {
-    x: 0,
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.8,
-    },
-  },
-  exit: (back: boolean) => ({
-    x: back ? 600 : -600,
-    opacity: 0,
-    scale: 0,
-    transition: {
-      duration: 0.8,
-    },
-  }),
-};
