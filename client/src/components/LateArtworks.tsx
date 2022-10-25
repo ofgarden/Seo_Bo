@@ -8,6 +8,12 @@ const Container = styled.div`
   position: absolute;
 `;
 
+const Warpper = styled.div`
+  display: grid;
+  grid-template-columns: 1% 88% 10% 1%;
+  height: 100vh;
+`;
+
 const TransparentCover = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -15,11 +21,12 @@ const TransparentCover = styled.div`
   position: absolute;
 `;
 
-const Warpper = styled.div`
-  display: grid;
-  grid-template-columns: 1% 88% 10% 1%;
-  height: 100vh;
-  /* place-items: center; */
+const BackgroudImg = styled.img`
+  padding-top: 50px;
+  align-self: center;
+  justify-self: center;
+  grid-column: 2;
+  width: 60%;
 `;
 
 const Title = styled.span`
@@ -37,14 +44,6 @@ const Description = styled.div`
   text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
   text-align: justify;
   align-self: center;
-`;
-
-const BackgroudImg = styled.img`
-  padding-top: 50px;
-  align-self: center;
-  justify-self: center;
-  grid-column: 2;
-  width: 60%;
 `;
 
 export default function LateArtworks() {
