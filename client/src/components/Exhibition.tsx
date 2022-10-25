@@ -18,7 +18,6 @@ const Container = styled.div`
   width: 700px;
   gap: 5px;
   border-bottom: 2px dashed black;
-  /* border: 1px solid red; */
 `;
 
 const Title = styled.div`
@@ -27,15 +26,15 @@ const Title = styled.div`
   text-shadow: 0.7px 1px 1px rgba(0, 0, 0, 0.4);
 `;
 
+const Venue = styled.div`
+  font-size: 15px;
+`;
+
 const Date = styled.div`
   font-size: 13px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-`;
-
-const Venue = styled.div`
-  font-size: 15px;
 `;
 
 const LinkToWebsite = styled.button`
