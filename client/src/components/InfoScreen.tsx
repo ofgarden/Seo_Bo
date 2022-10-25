@@ -6,12 +6,22 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   scroll-snap-align: start;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 `;
 
 const Button = styled.button`
+  height: 100px;
+  width: 100px;
+  margin: 30px;
   display: flex;
+  align-items: center;
   position: absolute;
-  margin: 100px;
+  border: none;
+  border-radius: 50px;
+  font-family: poppins;
+  background-color: rgba(255, 255, 255, 0.5);
 `;
 
 const TransparentCover = styled.div`
@@ -36,8 +46,8 @@ export default function InfoScreen() {
   return (
     <Container>
       <TransparentCover />
-      <Button onClick={handleClick}>To Exhibition</Button>
-      <BackgroudGif src={endGif}></BackgroudGif>
+      <Button onClick={handleClick}>Current Exhibition</Button>
+      <BackgroudGif src={endGif} />
     </Container>
   );
 }

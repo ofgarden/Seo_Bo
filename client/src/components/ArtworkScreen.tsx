@@ -18,8 +18,8 @@ const Container = styled.div`
 const ToGalleryWrapper = styled(motion.div)`
   position: absolute;
   display: flex;
-  top: 1%;
-  right: 1%;
+  top: 2%;
+  right: 1.5%;
   gap: 5px;
   align-items: center;
   cursor: pointer;
@@ -27,8 +27,8 @@ const ToGalleryWrapper = styled(motion.div)`
 `;
 
 const ToGalleryText = styled(motion.div)`
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 500;
 `;
 
 const MotionToGalleryButton = styled(motion.div)`
@@ -56,7 +56,10 @@ export default function ArtworkScreen({ category }: ICategory) {
           animate={{ x: [0, 5, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <FontAwesomeIcon icon={faAnglesRight} />
+          <FontAwesomeIcon
+            style={{ height: '19px', width: '19px' }}
+            icon={faAnglesRight}
+          />
         </MotionToGalleryButton>
       </ToGalleryWrapper>
     </Container>
