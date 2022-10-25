@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { lateDescription } from '../assets/description';
-import lateBackground from '../assets/lateBackground.jpeg';
+import { midDescription } from '../assets/description';
+import midBackground from '../assets/midBackground.jpeg';
 
 const Container = styled.div`
   height: 100vh;
@@ -16,35 +16,48 @@ const TransparentCover = styled.div`
 `;
 
 const Warpper = styled.div`
-  display: grid;
-  grid-template-columns: 1% 88% 10% 1%;
   height: 100vh;
-  /* place-items: center; */
+  display: grid;
+  grid-template-columns: 1% 55% 41% 3%;
+  grid-template-rows: 25% 25% 25% 25%;
 `;
 
 const Title = styled.span`
   grid-column: 3;
+  grid-row: 1 / 3;
   align-self: center;
+  justify-self: center;
   font-size: 90px;
   font-weight: 400;
-  writing-mode: vertical-rl;
+  padding: 30px;
+  @media (max-width: 1440px) {
+    font-size: 50px;
+  }
 `;
 
 const Description = styled.div`
-  grid-column: 2;
+  grid-column: 3;
+  grid-row: 2 / 5;
+  padding: 30px;
   line-height: 1.8;
-  padding-left: 10px;
   text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
   text-align: justify;
   align-self: center;
+  border-radius: 20px;
+  @media (max-width: 1440px) {
+    font-size: 12px;
+  }
 `;
 
 const BackgroudImg = styled.img`
-  padding-top: 50px;
+  grid-column: 2;
+  grid-row: 1 / 5;
   align-self: center;
   justify-self: center;
-  grid-column: 2;
-  width: 60%;
+  max-height: 80%;
+  @media (max-width: 820px) {
+    max-width: 90%;
+  }
 `;
 
 export default function LateArtworks() {
@@ -52,9 +65,9 @@ export default function LateArtworks() {
     <Container>
       <Warpper>
         <TransparentCover />
-        <BackgroudImg src={lateBackground} />
-        <Title>LATE ÉCRITURE</Title>
-        <Description>{lateDescription}</Description>
+        <BackgroudImg src={midBackground} />
+        <Title>MID ÉCRITURE</Title>
+        <Description>{midDescription}</Description>
       </Warpper>
     </Container>
   );
