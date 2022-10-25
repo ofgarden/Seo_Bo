@@ -6,11 +6,9 @@ import { faAnglesDown } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
-  scroll-snap-align: start;
   height: 100vh;
   width: 100%;
+  scroll-snap-align: start;
 `;
 
 const TransparentCover = styled.div`
@@ -18,11 +16,6 @@ const TransparentCover = styled.div`
   width: 100%;
   height: 100vh;
   position: absolute;
-`;
-
-const BackgroudGif = styled.img`
-  height: 100%;
-  width: 100%;
 `;
 
 const TextWapper = styled.div`
@@ -36,12 +29,6 @@ const TextWapper = styled.div`
   width: 100%;
 `;
 
-const Artist = styled.div`
-  color: white;
-  font-size: 30px;
-  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
-`;
-
 const TitleItalic = styled.div`
   font-style: italic;
   color: white;
@@ -50,11 +37,27 @@ const TitleItalic = styled.div`
   text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
 `;
 
+const Artist = styled.div`
+  color: white;
+  font-size: 30px;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+`;
+
 const MotionArrowDown = styled(motion.div)`
   position: absolute;
   bottom: 110px;
   width: 100%;
   text-align: center;
+`;
+
+const FontAwesomeArrowDown = styled(FontAwesomeIcon)`
+  height: 50px;
+  color: rgba(255, 255, 255, 0.5);
+`;
+
+const BackgroudGif = styled.img`
+  height: 100%;
+  width: 100%;
 `;
 
 export default function MainScreen() {
@@ -69,13 +72,7 @@ export default function MainScreen() {
         animate={{ y: [50, 60, 50] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <FontAwesomeIcon
-          style={{
-            height: '50px',
-            color: 'rgba(255, 255, 255, 0.5)',
-          }}
-          icon={faAnglesDown}
-        />
+        <FontAwesomeArrowDown icon={faAnglesDown} />
       </MotionArrowDown>
       <BackgroudGif src={startGif}></BackgroudGif>
     </Container>
