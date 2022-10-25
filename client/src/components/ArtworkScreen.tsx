@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 import { ICategory } from '../atoms';
-import { earlyDescription } from '../assets/description';
 import LateArtworks from './LateArtworks';
 import MidArtworks from './MidArtworks';
 import EarlyArtworks from './EarlyArtworks';
