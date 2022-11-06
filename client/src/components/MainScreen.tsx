@@ -7,57 +7,65 @@ import { faAnglesDown } from '@fortawesome/free-solid-svg-icons';
 const Container = styled.div`
   display: flex;
   height: 100vh;
-  width: 100%;
+  /* width: 100%; */
   scroll-snap-align: start;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 `;
 
 const TransparentCover = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: absolute;
 `;
 
 const TextWapper = styled.div`
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 100px;
-  height: 100%;
-  width: 100%;
 `;
 
 const TitleItalic = styled.div`
   font-style: italic;
-  color: white;
-  font-size: 110px;
+  font-size: 120px;
   font-weight: 900;
+  color: rgb(255, 255, 255);
   text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 390px) {
+    font-size: 70px;
+  }
 `;
 
 const Artist = styled.div`
-  color: white;
-  font-size: 30px;
+  font-size: 65px;
+  color: rgb(255, 255, 255);
   text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 390px) {
+    font-size: 38px;
+  }
 `;
 
 const MotionArrowDown = styled(motion.div)`
   position: absolute;
-  bottom: 110px;
-  width: 100%;
-  text-align: center;
+  bottom: 12%;
 `;
 
 const FontAwesomeArrowDown = styled(FontAwesomeIcon)`
   height: 50px;
   color: rgba(255, 255, 255, 0.5);
+
+  @media (max-width: 390px) {
+    height: 40px;
+  }
 `;
 
 const BackgroudGif = styled.img`
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
 `;
 
 export default function MainScreen() {
@@ -74,7 +82,7 @@ export default function MainScreen() {
       >
         <FontAwesomeArrowDown icon={faAnglesDown} />
       </MotionArrowDown>
-      <BackgroudGif src={startGif}></BackgroudGif>
+      <BackgroudGif src={startGif} />
     </Container>
   );
 }
