@@ -10,7 +10,7 @@ import EarlyArtworks from './EarlyArtworks';
 
 const Container = styled.div`
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   position: relative;
   scroll-snap-align: start;
 `;
@@ -18,8 +18,8 @@ const Container = styled.div`
 const ToGalleryWrapper = styled(motion.div)`
   position: absolute;
   display: flex;
-  top: 2%;
-  right: 1.5%;
+  top: 2rem;
+  right: 2rem;
   gap: 5px;
   align-items: center;
   cursor: pointer;

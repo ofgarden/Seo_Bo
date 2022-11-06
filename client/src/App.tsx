@@ -2,6 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 import Router from './Router';
 
 const GlobalStyle = createGlobalStyle`
+:root {
+  font-size: 62.5%
+}
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,900&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -19,7 +22,7 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
+  font-size: 1.6rem;
   font: inherit;
   vertical-align: baseline;
 }
