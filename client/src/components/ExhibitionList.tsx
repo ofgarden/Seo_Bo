@@ -26,27 +26,23 @@ const containerStyle = {
 };
 
 const Container = styled.div`
+  height: 100vh;
   padding: 50px;
   font-family: poppins;
-`;
-
-const TitleWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-const Title = styled.div`
-  margin-bottom: 50px;
-  font-size: 40px;
-  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const FontAwesomeHomeButton = styled(FontAwesomeIcon)`
   cursor: pointer;
-  color: lightgrey;
-  align-self: center;
-  margin-right: 50px;
+  color: rgb(0, 0, 0);
+  font-size: 1.5rem;
+  margin-left: 3px;
+`;
+
+const Title = styled.div`
+  margin-bottom: 50px;
+  font-size: 4rem;
+  font-weight: 500;
 `;
 
 const Wrapper = styled.div`
@@ -85,10 +81,8 @@ export default function ExhibitionList() {
 
   return (
     <Container>
-      <TitleWrapper>
-        <Title>CURRENT EXHIBITIONS</Title>
-        <FontAwesomeHomeButton icon={faHouseChimney} onClick={handleHome} />
-      </TitleWrapper>
+      <FontAwesomeHomeButton icon={faHouseChimney} onClick={handleHome} />
+      <Title>CURRENT EXHIBITIONS</Title>
       <Wrapper>
         <ExhibitionGrid>
           {exhibitionsList

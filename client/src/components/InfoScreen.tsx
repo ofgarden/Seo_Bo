@@ -12,6 +12,7 @@ const Container = styled.div`
 `;
 
 const Button = styled.button`
+  cursor: pointer;
   height: 100px;
   width: 100px;
   margin: 30px;
